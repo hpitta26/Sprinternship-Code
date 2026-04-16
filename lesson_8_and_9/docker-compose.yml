@@ -1,20 +1,18 @@
 services:
+  app:
+    build: .
+    container_name: fastapi_app
+    ports:
+      - "8080:80"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+    depends_on:
+      - mongodb
   mongodb:
-    image: mongo
+    image: mongo:latest
+    container_name: mongodb_workshop
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
+      - ./mongodb_data:/data/db
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
-
-  myapi:
-    build: .
-    ports:
-      - "9090:80"
-    environment:
-      MONGODB_URL: mongodb://mongodb:27017
-    depends_on:
-      - mongodb
-
-volumes:
-  mongodb_data:

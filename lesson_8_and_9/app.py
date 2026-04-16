@@ -1,11 +1,12 @@
 import os
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
 
 app = FastAPI()
-MONGO_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
-client = AsyncIOMotorClient(MONGO_URL, serverSelectionTimeoutMS=5000)
+MONGO_URL = os.getenv("MONGODB_URL", "mongodb://host.docker.internal:27017")
+print(f'Using MongoDB URL: {MONGO_URL}')
+client = AsyncIOMotorClient(MONGO_URL)
 db = client.agentic_db
 
 
@@ -18,7 +19,7 @@ def read_root():
 async def read_item(item_id: str):
     item = await db.items.find_one({"item_id": item_id})
     if not item:
-        raise HTTPException(status_code=404, detail="Item not found")
+        raise {"error": "Item not found"}
     item["_id"] = str(item["_id"])
     return item
 

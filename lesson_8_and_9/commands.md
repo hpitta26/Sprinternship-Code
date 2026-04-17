@@ -55,3 +55,27 @@ show tables # list tables in db
 db.items.find().pretty()
 ```
 
+## OpenClaw setup instructions
+```bash
+docker exec -it openclaw /bin/bash
+
+openclaw onboard
+
+1. i understand
+2. Quickstart
+3. Use existing values
+4. vLLM
+5. http://mercury.cs.fiu.edu:32000/v1
+6. student-secret-2026
+7. vllm/vllm/gpt-oss-20b
+8. Keep current
+9. Skip for now
+# container stops
+10. docker start openclaw
+11. openclaw onboard
+12. skip everything for now
+13. Onboarding complete. Use the dashboard link above to control OpenClaw. # this should show up
+
+openclaw tui
+```
+

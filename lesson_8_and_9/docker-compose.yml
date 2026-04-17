@@ -16,3 +16,11 @@ services:
     volumes:
       - ./mongodb_data:/data/db
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+  openclaw:
+    image: ghcr.io/openclaw/openclaw:latest
+    container_name: openclaw
+    ports:
+      - "3000:18789"
+    environment:
+      - OPENAI_API_BASE_URL="http://mercury.cs.fiu.edu:32000/v1"
+      - OPENAI_API_KEY="student-secret-2026"

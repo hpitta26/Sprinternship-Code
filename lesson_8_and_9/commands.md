@@ -67,7 +67,7 @@ openclaw onboard
 4. vLLM
 5. http://mercury.cs.fiu.edu:32000/v1
 6. student-secret-2026
-7. vllm/vllm/gpt-oss-20b
+7. vllm/openai/gpt-oss-20b
 8. Keep current
 9. Skip for now
 # container stops
